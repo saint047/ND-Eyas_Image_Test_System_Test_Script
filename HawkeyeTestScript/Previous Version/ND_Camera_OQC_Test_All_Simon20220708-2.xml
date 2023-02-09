@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestFlow>
+  <SystemInformation Version="0.0.0.1" Model="Hawkeye" Date="2020.07.22" LogFolder="C:\LogData\" />
+  <BeforeTest>
+    <OpenFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Open Filter Wheels">
+      <Parameters Run_Command="Open" Position="0"></Parameters>
+    </OpenFilterWheels>
+  </BeforeTest>
+  <TestSequences>
+    <ISP_OpenLed Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_IniAndSetLed" InutImage="NA" OutputImage="NA">
+      <Parameters Set_LedLevel="4" Ini_LedLevel="4"></Parameters>
+    </ISP_OpenLed>
+    <OpenFilterWheels Enable="1" Class="FilterWheelsControl" DisplayTestName="Open Filter Wheels " InutImage="NA" OutputImage="NA">
+      <Parameters Run_Command="Open" Position="0"></Parameters>
+    </OpenFilterWheels>
+    <Pause Enable="1" Class="Pause" DisplayTestName="Pause" InutImage="DarkImage" OutputImage="NA">
+      <Parameters Millisecond="2000"></Parameters>
+    </Pause>
+    <FilterWheelsPosition2 Enable="1" Class="FilterWheelsControl" DisplayTestName="Filter Wheels Control 2" InutImage="NA" OutputImage="NA">
+      <Parameters Run_Command="SetFilterPos" Position="1">
+        <FilterWheelsPosition3 Enable="1" Class="FilterWheelsControl" DisplayTestName="Filter Wheels Control 3" InutImage="NA" OutputImage="NA">
+          <Parameters Run_Command="SetFilterPos" Position="2"></Parameters>
+        </FilterWheelsPosition3>
+      </Parameters>
+    </FilterWheelsPosition2>
+    <Pause Enable="1" Class="Pause" DisplayTestName="Pause" InutImage="DarkImage" OutputImage="NA">
+      <Parameters Millisecond="2000"></Parameters>
+    </Pause>
+    <FilterWheelsPosition3 Enable="1" Class="FilterWheelsControl" DisplayTestName="Filter Wheels Control 3" InutImage="NA" OutputImage="NA">
+      <Parameters Run_Command="SetFilterPos" Position="2"></Parameters>
+    </FilterWheelsPosition3>
+    <Pause Enable="1" Class="Pause" DisplayTestName="Pause" InutImage="DarkImage" OutputImage="NA">
+      <Parameters Millisecond="2000"></Parameters>
+    </Pause>
+  </TestSequences>
+  <AfterTest>
+    <CloseFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Close Filter Wheels">
+      <Parameters Run_Command="Close" Position="0"></Parameters>
+    </CloseFilterWheels>
+  </AfterTest>
+</TestFlow>

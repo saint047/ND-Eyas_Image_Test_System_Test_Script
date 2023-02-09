@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestFlow>
+  <SystemInformation Version="0.0.0.1" Model="Hawkeye" Date="2020.07.22" LogFolder="C:\LogData\" />
+  <BeforeTest>
+    <OpenFilterWheels Enable="1" Class="FilterWheelsControl" DisplayTestName="Open Filter Wheels">
+      <Parameters Run_Command="Open" Position="0"></Parameters>
+    </OpenFilterWheels>
+  </BeforeTest>
+  <TestSequences>
+    <GetCameraOneFrame4Noise1 Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4Noise1" InutImage="NA" OutputImage="WhiteImage1">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4Noise1>
+    <GetCameraOneFrame4Noise2 Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4Noise2" InutImage="NA" OutputImage="WhiteImage2">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4Noise2>
+    <OpenImageFile1 Enable="0" Class="UIOpenImageFile" DisplayTestName="OpenImageFIle1" InutImage="NA" OutputImage="WhiteImage1">
+      <Parameters ShowMessage="Open Image1"></Parameters>
+    </OpenImageFile1>
+    <OpenImageFIle2 Enable="0" Class="UIOpenImageFile" DisplayTestName="OpenImageFIle2" InutImage="NA" OutputImage="WhiteImage2">
+      <Parameters ShowMessage="Open Image2"></Parameters>
+    </OpenImageFIle2>
+    <White_TemporalNoise Enable="1" Class="TemporalNoise" DisplayTestName="TemporalNoise" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters TemporalNoiseImg1="WhiteImage1" TemporalNoiseImg2="WhiteImage2" STDSpec="5"></Parameters>
+    </White_TemporalNoise>
+  </TestSequences>
+  <AfterTest>
+    <CloseFilterWheels Enable="1" Class="FilterWheelsControl" DisplayTestName="Close Filter Wheels">
+      <Parameters Run_Command="Close" Position="0"></Parameters>
+    </CloseFilterWheels>
+  </AfterTest>
+</TestFlow>

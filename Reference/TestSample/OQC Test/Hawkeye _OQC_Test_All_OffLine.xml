@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestFlow>
+  <SystemInformation Version="0.0.0.1" Model="Hawkeye" Date="2020.07.22" LogFolder="C:\LogData\" />
+  <BeforeTest>
+    <OpenFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Open Filter Wheels">
+      <Parameters Run_Command="Open" Position="0"></Parameters>
+    </OpenFilterWheels>
+  </BeforeTest>
+  <TestSequences>
+    <OpenWhiteImageFile Enable="1" Class="UIOpenImageFile" DisplayTestName="OpenWhiteImageFile" InutImage="NA" OutputImage="WhiteImage">
+      <Parameters ShowMessage="Open WhiteImage"></Parameters>
+    </OpenWhiteImageFile>
+    <White_Sensitivity Enable="1" Class="MeanAndStdev" DisplayTestName="White_Sensitivity" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters SpecRedSTD="100" SpecRedMeanMax="255" SpecRedMeanMin="150" SpecGreenSTD="100" SpecGreenMeanMax="255" SpecGreenMeanMin="150" SpecBlueSTD="100" SpecBlueMeanMax="255" SpecBlueMeanMin="150" SpecGraySTD="100" SpecGrayMeanMax="255" SpecGrayMeanMin="150"></Parameters>
+    </White_Sensitivity>
+    <White_WhiteBalance Enable="1" Class="WhiteBalance" DisplayTestName="White_WhiteBalance" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters SpecDiff="0.05"></Parameters>
+    </White_WhiteBalance>
+    <White_Uniformity2 Enable="1" Class="Uniformity2" DisplayTestName="White_Uniformity" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters EdgeArea="100" SpecUniformity2_Max="1.2" SpecUniformity2_Min="0.1"></Parameters>
+    </White_Uniformity2>
+    <White_DustSpot Enable="1" Class="DustSpot" DisplayTestName="White_DustSpot" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters DustSpotCenterSpec="0.07" DustSpotOutSideSpec="0.07" KernelSize="9" CenterSize="4" EdgeArea="80"></Parameters>
+    </White_DustSpot>
+    <White_ColorResponse Enable="1" Class="ColorRespond" DisplayTestName="White_ColorResponse" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters ColorRespondSpecRGr_Max="1.1" ColorRespondSpecRGr_Min="0.9" ColorRespondSpecBGb_Max="1.1" ColorRespondSpecBGb_Min="0.8"></Parameters>
+    </White_ColorResponse>
+    <OpenDarkImageFile1 Enable="1" Class="UIOpenImageFile" DisplayTestName="OpenDarkImageFile" InutImage="NA" OutputImage="DarkImage">
+      <Parameters ShowMessage="Open Dark Noise Image 1"></Parameters>
+    </OpenDarkImageFile1>
+    <OpenDarkImageFIle2 Enable="1" Class="UIOpenImageFile" DisplayTestName="OpenDarkImageFIle2" InutImage="NA" OutputImage="DarkImage2">
+      <Parameters ShowMessage="Open Dark Noise Image 2"></Parameters>
+    </OpenDarkImageFIle2>
+    <Dark_TemporalNoise Enable="1" Class="TemporalNoise" DisplayTestName="Dark_TemporalNoise" InutImage="NoUse" OutputImage="NA">
+      <Parameters TemporalNoiseImg1="DarkImage" TemporalNoiseImg2="DarkImage2" STDSpec="6" MeanSpecMax="255" MeanSpecMin="0"></Parameters>
+    </Dark_TemporalNoise>
+    <Dark_TotalNoise Enable="1" Class="MeanAndStdev" DisplayTestName="Dark_TotalNoise" InutImage="DarkImage" OutputImage="NA">
+      <Parameters SpecRedSTD="6" SpecRedMeanMax="255" SpecRedMeanMin="0" SpecGreenSTD="6" SpecGreenMeanMax="255" SpecGreenMeanMin="0" SpecBlueSTD="6" SpecBlueMeanMax="255" SpecBlueMeanMin="0" SpecGraySTD="6" SpecGrayMeanMax="255" SpecGrayMeanMin="0"></Parameters>
+    </Dark_TotalNoise>
+    <Dark_DarkResponse Enable="1" Class="DarkResponse" DisplayTestName="Dark DarkResponse" InutImage="DarkImage" OutputImage="NA">
+      <Parameters DarkResponseSpec="12"></Parameters>
+    </Dark_DarkResponse>
+    <Dark_StrayLight Enable="1" Class="StrayLight" DisplayTestName="Dark_StrayLight" InutImage="DarkImage" OutputImage="NA">
+      <Parameters StrayLightSpec="30" EdgeArea="100"></Parameters>
+    </Dark_StrayLight>
+    <OpenSFRImageFIle Enable="1" Class="UIOpenImageFile" DisplayTestName="OpenSFRImageFIle" InutImage="NA" OutputImage="SFR_OriImage">
+      <Parameters ShowMessage="Open SFR Image"></Parameters>
+    </OpenSFRImageFIle>
+    <GetROI Enable="1" Class="GetROI" DisplayTestName="GetROI" InutImage="SFR_OriImage" OutputImage="SFR_Image">
+      <Parameters StartX="90" StartY="70" ROI_Width="50" ROI_Height="70"></Parameters>
+    </GetROI>
+    <SFR_SingleSlantedROI Enable="1" Class="SFR_SingleSlantedROI" DisplayTestName="SFR_SingleSlantedROI" InutImage="SFR_Image" OutputImage="NA">
+      <Parameters Spec2Ny_2F="0.5" Spec4Ny_2F="0.6" Cut_Width="80"></Parameters>
+    </SFR_SingleSlantedROI>
+  </TestSequences>
+  <AfterTest>
+    <CloseFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Close Filter Wheels">
+      <Parameters Run_Command="Close" Position="0"></Parameters>
+    </CloseFilterWheels>
+  </AfterTest>
+</TestFlow>

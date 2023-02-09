@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestFlow>
+  <SystemInformation Version="0.0.0.1" Model="Hawkeye" Date="2020.07.22" LogFolder="C:\LogData\" />
+  <BeforeTest>
+    <OpenFilterWheels Enable="1" Class="FilterWheelsControl" DisplayTestName="Open Filter Wheels">
+      <Parameters Run_Command="Open" Position="0"></Parameters>
+    </OpenFilterWheels>
+  </BeforeTest>
+  <TestSequences>
+    <OpenFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Open Filter Wheels " InutImage="NA" OutputImage="NA">
+      <Parameters Run_Command="Open" Position="0"></Parameters>
+    </OpenFilterWheels>
+    <FilterWheelsPosition1 Enable="0" Class="FilterWheelsControl" DisplayTestName="Filter Wheels Control 1" InutImage="NA" OutputImage="NA">
+      <Parameters Run_Command="SetFilterPos" Position="0"></Parameters>
+    </FilterWheelsPosition1>
+    <FilterWheelsPosition2 Enable="0" Class="FilterWheelsControl" DisplayTestName="Filter Wheels Control 2" InutImage="NA" OutputImage="NA">
+      <Parameters Run_Command="SetFilterPos" Position="1"></Parameters>
+    </FilterWheelsPosition2>
+    <GetCameraOneFrame4White Enable="0" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4White" InutImage="NA" OutputImage="WhiteImage">
+      <Parameters CameraIndex="1"></Parameters>
+    </GetCameraOneFrame4White>
+    <White_Uniformity Enable="1" Class="Uniformity" DisplayTestName="White_Uniformity" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters UniformitySpec="0.45" Corner_ROI_Size="15" Center_ROI_Size="30"></Parameters>
+    </White_Uniformity>
+    <White_ColorRespond Enable="1" Class="ColorRespond" DisplayTestName="White_ColorRespond" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters ColorRespondSpecRGr_Max="1.1" ColorRespondSpecRGr_Min="0.7" ColorRespondSpecBGb_Max="0.9" ColorRespondSpecBGb_Min="0.5"></Parameters>
+    </White_ColorRespond>
+    <White_DustSpot Enable="1" Class="DustSpot" DisplayTestName="White_DustSpot" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters DustSpotCenterSpec="0.07" DustSpotOutSideSpec="0.2" KernelSize="9" CenterSize="4"></Parameters>
+    </White_DustSpot>
+    <White_DustSpot2 Enable="1" Class="DustSpot2" DisplayTestName="White_DustSpot2" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters DustSpotCenterSpec="0.07" DustSpotOutSideSpec="0.2"></Parameters>
+    </White_DustSpot2>
+    <White_PixelDefect Enable="1" Class="PixelDefect" DisplayTestName="White_PixelDefect" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters DustSpotCenterSpec="0.07" DustSpotOutSideSpec="0.2"></Parameters>
+    </White_PixelDefect>
+    <White_RowColumnFailures Enable="1" Class="RowColumnFailures" DisplayTestName="White_RowColumnFailures" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters isNormalLight="1" DNSdiffPec="5"></Parameters>
+    </White_RowColumnFailures>
+    <GetCameraOneFrame4Noise1 Enable="0" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4Noise1" InutImage="NA" OutputImage="WhiteImage1">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4Noise1>
+    <GetCameraOneFrame4Noise2 Enable="0" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4Noise2" InutImage="NA" OutputImage="WhiteImage2">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4Noise2>
+    <OpenImageFile1 Enable="1" Class="UIOpenImageFile" DisplayTestName="OpenImageFIle1" InutImage="NA" OutputImage="WhiteImage1">
+      <Parameters ShowMessage="Open Image1"></Parameters>
+    </OpenImageFile1>
+    <OpenImageFIle2 Enable="1" Class="UIOpenImageFile" DisplayTestName="OpenImageFIle2" InutImage="NA" OutputImage="WhiteImage2">
+      <Parameters ShowMessage="Open Image2"></Parameters>
+    </OpenImageFIle2>
+    <White_TemporalNoise Enable="1" Class="TemporalNoise" DisplayTestName="TemporalNoise" InutImage="WhiteImage1" OutputImage="NA">
+      <Parameters TemporalNoiseImg1="WhiteImage1" TemporalNoiseImg2="WhiteImage2" STDSpec="5"></Parameters>
+    </White_TemporalNoise>
+    <GetCameraOneFrame4Dark Enable="0" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4Dark" InutImage="NA" OutputImage="DarkImage">
+      <Parameters CameraIndex="1"></Parameters>
+    </GetCameraOneFrame4Dark>
+    <Dark_StrayLight Enable="0" Class="StrayLight" DisplayTestName="Dark_StrayLight" InutImage="DarkImage" OutputImage="NA">
+      <Parameters StrayLightSpec="12" EdgeArea="100"></Parameters>
+    </Dark_StrayLight>
+    <Dark_StrayLight2 Enable="0" Class="StrayLight2" DisplayTestName="Dark_StrayLight2" InutImage="DarkImage" OutputImage="NA">
+      <Parameters StrayLightSpec="25" EdgeArea="100"></Parameters>
+    </Dark_StrayLight2>
+    <Dark_DarkResponse Enable="0" Class="DarkResponse" DisplayTestName="Dark DarkResponse" InutImage="DarkImage" OutputImage="NA">
+      <Parameters DarkResponseSpec="12"></Parameters>
+    </Dark_DarkResponse>
+    <FilterWheelsPosition3 Enable="0" Class="FilterWheelsControl" DisplayTestName="Filter Wheels Control 3" InutImage="NA" OutputImage="NA">
+      <Parameters Run_Command="SetFilterPos" Position="2"></Parameters>
+    </FilterWheelsPosition3>
+    <GetCameraOneFrame4SFR Enable="0" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4SFR" InutImage="NA" OutputImage="SFR_Image">
+      <Parameters CameraIndex="1"></Parameters>
+    </GetCameraOneFrame4SFR>
+    <SFR_SFR Enable="0" Class="SFR" DisplayTestName="SFR_SFR" InutImage="SFR_Image" OutputImage="NA">
+      <Parameters Spec2Ny_2F="0.35" Spec2Ny_5F="0.3" Spec4Ny_2F="0.6" Spec4Ny_5F="0.4" TempleteImgPath="AM3 Templete1SUB2.jpg"></Parameters>
+    </SFR_SFR>
+    <FilterWheelsPosition4 Enable="0" Class="FilterWheelsControl" DisplayTestName="Filter Wheels Control 4" InutImage="NA" OutputImage="NA">
+      <Parameters Run_Command="SetFilterPos" Position="3"></Parameters>
+    </FilterWheelsPosition4>
+    <FilterWheelsPosition5 Enable="0" Class="FilterWheelsControl" DisplayTestName="Filter Wheels Control 5" InutImage="NA" OutputImage="NA">
+      <Parameters Run_Command="SetFilterPos" Position="4"></Parameters>
+    </FilterWheelsPosition5>
+  </TestSequences>
+  <AfterTest>
+    <CloseFilterWheels Enable="1" Class="FilterWheelsControl" DisplayTestName="Close Filter Wheels">
+      <Parameters Run_Command="Close" Position="0"></Parameters>
+    </CloseFilterWheels>
+  </AfterTest>
+</TestFlow>

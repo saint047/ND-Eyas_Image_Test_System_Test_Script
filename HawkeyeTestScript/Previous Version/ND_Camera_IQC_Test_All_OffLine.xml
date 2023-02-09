@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestFlow>
+  <SystemInformation Version="0.0.0.1" Model="Hawkeye" Date="2020.07.22" LogFolder="C:\LogData\" />
+  <BeforeTest>
+    <OpenFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Open Filter Wheels">
+      <Parameters Run_Command="Open" Position="0"></Parameters>
+    </OpenFilterWheels>
+  </BeforeTest>
+  <TestSequences>
+    <OpenSFRImageFile Enable="1" Class="UIOpenImageFile" DisplayTestName="OpenSFRImageFile" InutImage="NA" OutputImage="SFR_OriImage">
+      <Parameters ShowMessage="Open SFR Image"></Parameters>
+    </OpenSFRImageFile>
+    <GetROI Enable="1" Class="GetROI" DisplayTestName="GetROI" InutImage="SFR_OriImage" OutputImage="SFR_Image">
+      <Parameters StartX="120" StartY="120" ROI_Width="130" ROI_Height="80"></Parameters>
+    </GetROI>
+    <SFR_SingleSlantedROI Enable="1" Class="SFR_SingleSlantedROI" DisplayTestName="SFR_SingleSlantedROI" InutImage="SFR_Image" OutputImage="NA">
+      <Parameters Spec2Ny_2F="0.5" Spec4Ny_2F="0.6" Cut_Width="80"></Parameters>
+    </SFR_SingleSlantedROI>
+  </TestSequences>
+  <AfterTest>
+    <CloseFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Close Filter Wheels">
+      <Parameters Run_Command="Close" Position="0"></Parameters>
+    </CloseFilterWheels>
+  </AfterTest>
+</TestFlow>

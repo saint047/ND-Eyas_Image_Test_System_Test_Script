@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestFlow>
+  <SystemInformation Version="0.0.0.1" Model="Hawkeye" Date="2020.07.22" LogFolder="C:\LogData\" />
+  <BeforeTest>
+    <OpenFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Open Filter Wheels">
+      <Parameters Run_Command="Open" Position="0"></Parameters>
+    </OpenFilterWheels>
+  </BeforeTest>
+  <TestSequences>
+    <White_DefectPixel Enable="1" Class="PixelDefect" DisplayTestName="White_DefectPixel" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters ToalFailSpec="20" IsLightMode="1" SpecDarkMode="20" ReferenceBlock="7" SpecLightMode="0.2"></Parameters>
+    </White_DefectPixel>
+    <White_Uniformity Enable="1" Class="Uniformity" DisplayTestName="White_Uniformity" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters UniformitySpec="0.45" Corner_ROI_Size="15" Center_ROI_Size="30"></Parameters>
+    </White_Uniformity>
+    <White_ColorResponse Enable="1" Class="ColorRespond" DisplayTestName="White_ColorResponse" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters ColorRespondSpecRGr_Max="1.1" ColorRespondSpecRGr_Min="0.7" ColorRespondSpecBGb_Max="0.9" ColorRespondSpecBGb_Min="0.5"></Parameters>
+    </White_ColorResponse>
+    <White_DustSpot Enable="1" Class="DustSpot" DisplayTestName="White_DustSpot" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters DustSpotCenterSpec="0.07" DustSpotOutSideSpec="0.2" KernelSize="9" CenterSize="4"></Parameters>
+    </White_DustSpot>
+  </TestSequences>
+  <AfterTest>
+    <CloseFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Close Filter Wheels">
+      <Parameters Run_Command="Close" Position="0"></Parameters>
+    </CloseFilterWheels>
+  </AfterTest>
+</TestFlow>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestFlow>
+  <SystemInformation Version="0.0.0.1" Model="Hawkeye" Date="2020.07.22" LogFolder="C:\LogData\" />
+  <BeforeTest>
+    <OpenFilterWheels Enable="1" Class="FilterWheelsControl" DisplayTestName="Open Filter Wheels">
+      <Parameters Run_Command="Open" Position="0"></Parameters>
+    </OpenFilterWheels>
+  </BeforeTest>
+  <TestSequences>
+    <White_Sensitivity Enable="1" Class="MeanAndStdev" DisplayTestName="White_Sensitivity" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters SpecRedSTD="100" SpecRedMeanMax="255" SpecRedMeanMin="200" SpecGreenSTD="100" SpecGreenMeanMax="255" SpecGreenMeanMin="200" SpecBlueSTD="100" SpecBlueMeanMax="255" SpecBlueMeanMin="200" SpecGraySTD="100" SpecGrayMeanMax="255" SpecGrayMeanMin="200"></Parameters>
+    </White_Sensitivity>
+    <White_WhiteBalance Enable="1" Class="WhiteBalance" DisplayTestName="White_WhiteBalance" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters SpecDiff="0.03"></Parameters>
+    </White_WhiteBalance>
+    <White_Uniformity2 Enable="1" Class="Uniformity2" DisplayTestName="White_Uniformity2" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters EdgeArea="100" SpecUniformity2_Max="1.2" SpecUniformity2_Min="0.7"></Parameters>
+    </White_Uniformity2>
+    <White_DustSpot Enable="1" Class="DustSpot" DisplayTestName="White_DustSpot" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters DustSpotCenterSpec="0.07" DustSpotOutSideSpec="0.2" KernelSize="9" CenterSize="4" EdgeArea="80"></Parameters>
+    </White_DustSpot>
+    <White_RowColumnFailures Enable="1" Class="RowColumnFailures" DisplayTestName="White_RowColumnFailures" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters isNormalLight="1" DNSdiffPec="5" NormalLightSurroundingNum="5"></Parameters>
+    </White_RowColumnFailures>
+  </TestSequences>
+  <AfterTest>
+    <CloseFilterWheels Enable="1" Class="FilterWheelsControl" DisplayTestName="Close Filter Wheels">
+      <Parameters Run_Command="Close" Position="0"></Parameters>
+    </CloseFilterWheels>
+  </AfterTest>
+</TestFlow>

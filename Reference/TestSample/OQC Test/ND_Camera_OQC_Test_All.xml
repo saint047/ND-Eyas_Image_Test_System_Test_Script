@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestFlow>
+  <SystemInformation Version="0.0.0.1" Model="Hawkeye" Date="2020.07.22" LogFolder="C:\LogData\" />
+  <BeforeTest>
+    <OpenFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Open Filter Wheels">
+      <Parameters Run_Command="Open" Position="0"></Parameters>
+    </OpenFilterWheels>
+  </BeforeTest>
+  <TestSequences>
+    <OpenFilterWheels Enable="1" Class="FilterWheelsControl" DisplayTestName="Open Filter Wheels " InutImage="NA" OutputImage="NA">
+      <Parameters Run_Command="Open" Position="0"></Parameters>
+    </OpenFilterWheels>
+    <FilterWheelsPosition2 Enable="1" Class="FilterWheelsControl" DisplayTestName="Filter Wheels Control 2" InutImage="NA" OutputImage="NA">
+      <Parameters Run_Command="SetFilterPos" Position="1"></Parameters>
+    </FilterWheelsPosition2>
+    <GetCameraOneFrame4White Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4White" InutImage="NA" OutputImage="WhiteImage">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4White>
+    <White_Sensitivity Enable="1" Class="MeanAndStdev" DisplayTestName="White_Sensitivity" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters SpecRedSTD="100" SpecRedMeanMax="255" SpecRedMeanMin="200" SpecGreenSTD="100" SpecGreenMeanMax="255" SpecGreenMeanMin="200" SpecBlueSTD="100" SpecBlueMeanMax="255" SpecBlueMeanMin="200" SpecGraySTD="100" SpecGrayMeanMax="255" SpecGrayMeanMin="200"></Parameters>
+    </White_Sensitivity>
+    <White_WhiteBalance Enable="1" Class="WhiteBalance" DisplayTestName="White_WhiteBalance" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters SpecDiff="0.03"></Parameters>
+    </White_WhiteBalance>
+    <White_Uniformity2 Enable="1" Class="Uniformity2" DisplayTestName="White_Uniformity2" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters EdgeArea="100" SpecUniformity2_Max="1.2" SpecUniformity2_Min="0.7"></Parameters>
+    </White_Uniformity2>
+    <White_DustSpot Enable="1" Class="DustSpot" DisplayTestName="White_DustSpot" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters DustSpotCenterSpec="0.07" DustSpotOutSideSpec="0.2" KernelSize="9" CenterSize="4" EdgeArea="80"></Parameters>
+    </White_DustSpot>
+    <White_RowColumnFailures Enable="1" Class="RowColumnFailures" DisplayTestName="White_RowColumnFailures" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters isNormalLight="1" DNSdiffPec="5" NormalLightSurroundingNum="5" SkipLastDummpyLine="1"></Parameters>
+    </White_RowColumnFailures>
+    <GetCameraOneFrame4Noise1 Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4Noise1" InutImage="NA" OutputImage="WhiteImage1">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4Noise1>
+    <GetCameraOneFrame4Noise2 Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4Noise2" InutImage="NA" OutputImage="WhiteImage2">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4Noise2>
+    <OpenImageFile1 Enable="0" Class="UIOpenImageFile" DisplayTestName="OpenImageFIle1" InutImage="NA" OutputImage="WhiteImage1">
+      <Parameters ShowMessage="Open Image1"></Parameters>
+    </OpenImageFile1>
+    <OpenImageFIle2 Enable="0" Class="UIOpenImageFile" DisplayTestName="OpenImageFIle2" InutImage="NA" OutputImage="WhiteImage2">
+      <Parameters ShowMessage="Open Image2"></Parameters>
+    </OpenImageFIle2>
+    <Dark_TemporalNoise Enable="1" Class="TemporalNoise" DisplayTestName="Dark_TemporalNoise" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters TemporalNoiseImg1="WhiteImage1" TemporalNoiseImg2="WhiteImage2" STDSpec="5" MeanSpecMax="255" MeanSpecMin="0"></Parameters>
+    </Dark_TemporalNoise>
+    <GetCameraOneFrame4Dark Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4Dark" InutImage="NA" OutputImage="DarkImage">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4Dark>
+    <Dark_TotalNoise Enable="1" Class="MeanAndStdev" DisplayTestName="Dark_TotalNoise" InutImage="DarkImage" OutputImage="NA">
+      <Parameters SpecRedSTD="25" SpecRedMeanMax="12" SpecRedMeanMin="0" SpecGreenSTD="25" SpecGreenMeanMax="12" SpecGreenMeanMin="0" SpecBlueSTD="25" SpecBlueMeanMax="12" SpecBlueMeanMin="0" SpecGraySTD="25" SpecGrayMeanMax="12" SpecGrayMeanMin="0"></Parameters>
+    </Dark_TotalNoise>
+    <Dark_DarkResponse Enable="1" Class="DarkResponse" DisplayTestName="Dark DarkResponse" InutImage="DarkImage" OutputImage="NA">
+      <Parameters DarkResponseSpec="12"></Parameters>
+    </Dark_DarkResponse>
+    <Dark_StrayLight Enable="1" Class="StrayLight" DisplayTestName="Dark_StrayLight" InutImage="DarkImage" OutputImage="NA">
+      <Parameters StrayLightSpec="12" EdgeArea="100"></Parameters>
+    </Dark_StrayLight>
+    <FilterWheelsPosition3 Enable="1" Class="FilterWheelsControl" DisplayTestName="Filter Wheels Control 3" InutImage="NA" OutputImage="NA">
+      <Parameters Run_Command="SetFilterPos" Position="2"></Parameters>
+    </FilterWheelsPosition3>
+    <GetCameraOneFrame4SFR Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4SFR" InutImage="NA" OutputImage="SFR_Image">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4SFR>
+    <SFR_SingleSlantedROI Enable="1" Class="SFR_SingleSlantedROI" DisplayTestName="SFR_SingleSlantedROI" InutImage="SFR_Image" OutputImage="NA">
+      <Parameters Spec2Ny_2F="0.35" Spec4Ny_2F="0.6" Cut_Width="80"></Parameters>
+    </SFR_SingleSlantedROI>
+    <FilterWheelsPosition4 Enable="1" Class="FilterWheelsControl" DisplayTestName="Filter Wheels Control 4" InutImage="NA" OutputImage="NA">
+      <Parameters Run_Command="SetFilterPos" Position="3"></Parameters>
+    </FilterWheelsPosition4>
+    <GetCameraOneFrame4Blue Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4Blue" InutImage="NA" OutputImage="Blue_Image">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4Blue>
+    <Blue_ColorResponse Enable="1" Class="MeanAndStdev" DisplayTestName="Blue_ColorResponse" InutImage="Blue_Image" OutputImage="NA">
+      <Parameters SpecRedSTD="25" SpecRedMeanMax="255" SpecRedMeanMin="1" SpecGreenSTD="24" SpecGreenMeanMax="254" SpecGreenMeanMin="2" SpecBlueSTD="23" SpecBlueMeanMax="254" SpecBlueMeanMin="3" SpecGraySTD="22" SpecGrayMeanMax="253" SpecGrayMeanMin="4"></Parameters>
+    </Blue_ColorResponse>
+    <FilterWheelsPosition5 Enable="1" Class="FilterWheelsControl" DisplayTestName="Filter Wheels Control 5" InutImage="NA" OutputImage="NA">
+      <Parameters Run_Command="SetFilterPos" Position="4"></Parameters>
+    </FilterWheelsPosition5>
+    <GetCameraOneFrame4Red Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4Red" InutImage="NA" OutputImage="Red_Image">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4Red>
+    <Red_ColorResponse Enable="1" Class="MeanAndStdev" DisplayTestName="Red_ColorResponse" InutImage="Red_Image" OutputImage="NA">
+      <Parameters SpecRedSTD="25" SpecRedMeanMax="255" SpecRedMeanMin="1" SpecGreenSTD="24" SpecGreenMeanMax="254" SpecGreenMeanMin="2" SpecBlueSTD="23" SpecBlueMeanMax="254" SpecBlueMeanMin="3" SpecGraySTD="22" SpecGrayMeanMax="253" SpecGrayMeanMin="4"></Parameters>
+    </Red_ColorResponse>
+    <FilterWheelsPosition1 Enable="1" Class="FilterWheelsControl" DisplayTestName="Filter Wheels Control 1" InutImage="NA" OutputImage="NA">
+      <Parameters Run_Command="SetFilterPos" Position="0"></Parameters>
+    </FilterWheelsPosition1>
+    <GetCameraOneFrame4Green Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4Green" InutImage="NA" OutputImage="Green_Image">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4Green>
+    <Green_ColorResponse Enable="1" Class="MeanAndStdev" DisplayTestName="Green_ColorResponse" InutImage="Green_Image" OutputImage="NA">
+      <Parameters SpecRedSTD="25" SpecRedMeanMax="255" SpecRedMeanMin="1" SpecGreenSTD="24" SpecGreenMeanMax="254" SpecGreenMeanMin="2" SpecBlueSTD="23" SpecBlueMeanMax="254" SpecBlueMeanMin="3" SpecGraySTD="22" SpecGrayMeanMax="253" SpecGrayMeanMin="4"></Parameters>
+    </Green_ColorResponse>
+    <CloseFilterWheels Enable="1" Class="FilterWheelsControl" DisplayTestName="Close Filter Wheels">
+      <Parameters Run_Command="Close" Position="0"></Parameters>
+    </CloseFilterWheels>
+  </TestSequences>
+  <AfterTest>
+    <CloseFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Close Filter Wheels">
+      <Parameters Run_Command="Close" Position="0"></Parameters>
+    </CloseFilterWheels>
+  </AfterTest>
+</TestFlow>

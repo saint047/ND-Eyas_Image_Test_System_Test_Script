@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestFlow>
+  <SystemInformation Version="0.0.0.1" Model="Hawkeye" Date="2020.07.22" LogFolder="C:\LogData\" />
+  <BeforeTest>
+    <OpenFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Open Filter Wheels">
+      <Parameters Run_Command="Open" Position="0"></Parameters>
+    </OpenFilterWheels>
+  </BeforeTest>
+  <TestSequences>
+    <ISP_OpenLed Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_IniAndSetLed" InutImage="NA" OutputImage="NA">
+      <Parameters Set_LedLevel="3" Ini_LedLevel="3"></Parameters>
+    </ISP_OpenLed>
+    <ISP_CloseLed2 Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_CloseLed2" InutImage="NA" OutputImage="NA">
+      <Parameters Set_LedLevel="-1" Ini_LedLevel="-1"></Parameters>
+    </ISP_CloseLed2>
+    <ISP_OpenLed2 Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_OpenLed2" InutImage="NA" OutputImage="NA">
+      <Parameters Set_LedLevel="3" Ini_LedLevel="3"></Parameters>
+    </ISP_OpenLed2>
+    <ISP_CloseLed Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_CloseLed" InutImage="NA" OutputImage="NA">
+      <Parameters Set_LedLevel="-1" Ini_LedLevel="-1"></Parameters>
+    </ISP_CloseLed>
+    <ISP_OpenLed Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_IniAndSetLed" InutImage="NA" OutputImage="NA">
+      <Parameters Set_LedLevel="3" Ini_LedLevel="3"></Parameters>
+    </ISP_OpenLed>
+  </TestSequences>
+  <AfterTest>
+    <CloseFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Close Filter Wheels">
+      <Parameters Run_Command="Close" Position="0"></Parameters>
+    </CloseFilterWheels>
+  </AfterTest>
+</TestFlow>

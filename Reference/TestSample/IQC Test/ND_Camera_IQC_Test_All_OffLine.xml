@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestFlow>
+  <SystemInformation Version="0.0.0.1" Model="Hawkeye" Date="2020.07.22" LogFolder="C:\LogData\" />
+  <BeforeTest>
+    <OpenFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Open Filter Wheels">
+      <Parameters Run_Command="Open" Position="0"></Parameters>
+    </OpenFilterWheels>
+  </BeforeTest>
+  <TestSequences>
+    <OpenWhiteImageFile Enable="1" Class="UIOpenImageFile" DisplayTestName="OpenWhiteImageFile" InutImage="NA" OutputImage="WhiteImage">
+      <Parameters ShowMessage="Open WhiteImage"></Parameters>
+    </OpenWhiteImageFile>
+    <White_DefectPixel Enable="1" Class="PixelDefect" DisplayTestName="White_DefectPixel" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters ToalFailSpec="20" IsLightMode="1" SpecDarkMode="20" ReferenceBlock="7" SpecLightMode="0.2"></Parameters>
+    </White_DefectPixel>
+    <White_Uniformity Enable="1" Class="Uniformity" DisplayTestName="White_Uniformity" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters UniformitySpec="0.45" Corner_ROI_Size="15" Center_ROI_Size="30"></Parameters>
+    </White_Uniformity>
+    <White_ColorResponse Enable="1" Class="ColorRespond" DisplayTestName="White_ColorResponse" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters ColorRespondSpecRGr_Max="1.1" ColorRespondSpecRGr_Min="0.7" ColorRespondSpecBGb_Max="0.9" ColorRespondSpecBGb_Min="0.5"></Parameters>
+    </White_ColorResponse>
+    <White_DustSpot Enable="1" Class="DustSpot" DisplayTestName="White_DustSpot" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters DustSpotCenterSpec="0.07" DustSpotOutSideSpec="0.2" KernelSize="9" CenterSize="4"></Parameters>
+    </White_DustSpot>
+    <OpenDarkImageFile Enable="1" Class="UIOpenImageFile" DisplayTestName="OpenDarkImageFile" InutImage="NA" OutputImage="DarkImage">
+      <Parameters ShowMessage="Open DarkImage"></Parameters>
+    </OpenDarkImageFile>
+    <Dark_DarkResponse Enable="1" Class="DarkResponse" DisplayTestName="Dark DarkResponse" InutImage="DarkImage" OutputImage="NA">
+      <Parameters DarkResponseSpec="12"></Parameters>
+    </Dark_DarkResponse>
+    <OpenSFRImageFile Enable="1" Class="UIOpenImageFile" DisplayTestName="OpenSFRImageFile" InutImage="NA" OutputImage="SFR_Image">
+      <Parameters ShowMessage="Open SFR Image"></Parameters>
+    </OpenSFRImageFile>
+    <SFR_SFR Enable="1" Class="SFR" DisplayTestName="SFR_SFR" InutImage="SFR_Image" OutputImage="NA">
+      <Parameters Spec2Ny_2F="0.35" Spec2Ny_5F="0.3" Spec4Ny_2F="0.6" Spec4Ny_5F="0.4" TempleteImgPath="AM3 Templete1SUB2.jpg"></Parameters>
+    </SFR_SFR>
+  </TestSequences>
+  <AfterTest>
+    <CloseFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Close Filter Wheels">
+      <Parameters Run_Command="Close" Position="0"></Parameters>
+    </CloseFilterWheels>
+  </AfterTest>
+</TestFlow>
