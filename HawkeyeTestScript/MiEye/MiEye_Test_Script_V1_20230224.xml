@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestFlow>
+  <SystemInformation Version="0.0.0.1" Model="Hawkeye" Date="2020.07.22" LogFolder="C:\LogData\" SaveNDFormat="1">
+    <ND_Format>
+      <Sensitivity Item="5.8.1" InspectionItem="Sensitivity" DisplayTestName="White_Sensitivity" />
+      <WhiteBalance Item="5.8.2" InspectionItem="White Balance" DisplayTestName="White_WhiteBalance" />
+      <SFRTest Item="5.8.3" InspectionItem="SFR Test" DisplayTestName="SFR_SingleSlantedROI" />
+      <UniformityTest Item="5.8.4" InspectionItem="Uniformity Test" DisplayTestName="White_Uniformity2" />
+      <ColorResponseTest Item="5.8.5" InspectionItem="Color Response Test" DisplayTestName="ColorResponseRGB_Ratio" />
+      <DustSpotTest Item="5.8.6" InspectionItem="Dust/Spot Test" DisplayTestName="White_DustSpot" />
+      <DarkTest Item="5.8.7" InspectionItem="Dark Test" DisplayTestName="Dark DarkResponse" />
+      <NoiseTest Item="5.8.8" InspectionItem="Noise Test" DisplayTestName="Dark_TotalNoise" />
+      <StrayLightTest Item="5.8.9" InspectionItem="Stray Light Test" DisplayTestName="Dark_StrayLight" />
+    </ND_Format>
+    <CheckSN Enable="0" RegexFormat="^[a-zA-Z0-9_+\-()]{12}$" ErrorMessage="請輸入12碼合法序號(a~z 0~9 +-_())" />
+  </SystemInformation>
+  <BeforeTest>
+    <OpenFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Open Filter Wheels">
+      <Parameters Run_Command="Open" Position="0"></Parameters>
+    </OpenFilterWheels>
+  </BeforeTest>
+  <TestSequences>
+    <OpenWhiteImageFile Enable="1" Class="UIOpenImageFile" DisplayTestName="OpenWhiteImageFile" InutImage="NA" OutputImage="WhiteImage_Ori">
+      <Parameters ShowMessage="Open WhiteImage"></Parameters>
+    </OpenWhiteImageFile>
+    <GetROI_White Enable="1" Class="GetROI_White" DisplayTestName="GetROI" InutImage="WhiteImage_Ori" OutputImage="WhiteImage">
+      <Parameters StartX="6" StartY="6" ROI_Width="490" ROI_Height="490"></Parameters>
+    </GetROI_White>
+    <White_Sensitivity Enable="1" Class="GrayImage_Mean" DisplayTestName="White_Sensitivity" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters SpecGrayMeanMax="255" SpecGrayMeanMin="150"></Parameters>
+    </White_Sensitivity>
+    <White_WhiteBalance Enable="1" Class="WhiteBalance" DisplayTestName="White_WhiteBalance" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters SpecDiff="15"></Parameters>
+    </White_WhiteBalance>
+    <White_Uniformity2 Enable="1" Class="Uniformity2" DisplayTestName="White_Uniformity2" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters SpecUniformity2_Max="100" EdgeArea="100" SpecUniformity2_Min="50"></Parameters>
+    </White_Uniformity2>
+    <White_DustSpot Enable="1" Class="DustSpot" DisplayTestName="White_DustSpot" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters DustSpotCenterSpec="10" DustSpotOutSideSpec="80" KernelSize="9" CenterSize="4" EdgeArea="80"></Parameters>
+    </White_DustSpot>
+    <OpenDarkImageFile Enable="1" Class="UIOpenImageFile" DisplayTestName="OpenDarkImageFile" InutImage="NA" OutputImage="DarkImage">
+      <Parameters ShowMessage="Open Dark Image"></Parameters>
+    </OpenDarkImageFile>
+    <Dark_TotalNoise Enable="1" Class="GrayImage_StandardDeviation" DisplayTestName="Dark_TotalNoise" InutImage="DarkImage" OutputImage="NA">
+      <Parameters SpecGrayStdMax="6" SpecGrayStdMin="0"></Parameters>
+    </Dark_TotalNoise>
+    <Dark_DarkResponse Enable="1" Class="DarkResponse" DisplayTestName="Dark DarkResponse" InutImage="DarkImage" OutputImage="NA">
+      <Parameters DarkResponseSpec="20"></Parameters>
+    </Dark_DarkResponse>
+    <OpenSFRImageFile Enable="1" Class="UIOpenImageFile" DisplayTestName="OpenSFRImageFile" InutImage="NA" OutputImage="SFR_OriImage">
+      <Parameters ShowMessage="Open SFR Image"></Parameters>
+    </OpenSFRImageFile>
+    <GetROI Enable="1" Class="GetROI" DisplayTestName="GetROI" InutImage="SFR_OriImage" OutputImage="SFR_Image">
+      <Parameters StartX="120" StartY="120" ROI_Width="130" ROI_Height="80"></Parameters>
+    </GetROI>
+    <SFR_SingleSlantedROI Enable="1" Class="SFR_SingleSlantedROI" DisplayTestName="SFR_SingleSlantedROI" InutImage="SFR_Image" OutputImage="NA">
+      <Parameters Spec2Ny_2F_Min="0.35" Spec4Ny_2F_Min="0.6" Cut_Width="80" Spec2Ny_2F_Max="1.0" Spec4Ny_2F_Max="1.0"></Parameters>
+    </SFR_SingleSlantedROI>
+    <OpenBlueImageFile Enable="1" Class="UIOpenImageFile" DisplayTestName="OpenBlueImageFile" InutImage="NA" OutputImage="Blue_Image">
+      <Parameters ShowMessage="Open Blue Image"></Parameters>
+    </OpenBlueImageFile>
+    <Blue_ColorResponse Enable="1" Class="MeanAndStdev" DisplayTestName="Blue_ColorResponse" InutImage="Blue_Image" OutputImage="NA">
+      <Parameters SpecRedSTD="255" SpecRedMeanMax="255" SpecRedMeanMin="0" SpecGreenSTD="255" SpecGreenMeanMax="255" SpecGreenMeanMin="0" SpecBlueSTD="255" SpecBlueMeanMax="255" SpecBlueMeanMin="0" SpecGraySTD="255" SpecGrayMeanMax="255" SpecGrayMeanMin="0" OutRedMean="RedMeanNoUse" OutGreenMean="GreenMeanNoUse" OutBlueMean="BlueMeanOut"></Parameters>
+    </Blue_ColorResponse>
+    <OpenRedImageFile Enable="1" Class="UIOpenImageFile" DisplayTestName="OpenRedImageFile" InutImage="NA" OutputImage="Red_Image">
+      <Parameters ShowMessage="Open Red Image"></Parameters>
+    </OpenRedImageFile>
+    <Red_ColorResponse Enable="1" Class="MeanAndStdev" DisplayTestName="Red_ColorResponse" InutImage="Red_Image" OutputImage="NA">
+      <Parameters SpecRedSTD="255" SpecRedMeanMax="255" SpecRedMeanMin="0" SpecGreenSTD="255" SpecGreenMeanMax="255" SpecGreenMeanMin="0" SpecBlueSTD="255" SpecBlueMeanMax="255" SpecBlueMeanMin="0" SpecGraySTD="255" SpecGrayMeanMax="255" SpecGrayMeanMin="0" OutRedMean="RedMeanOut" OutGreenMean="GreenMeanNoUse" OutBlueMean="BlueMeanNoUse"></Parameters>
+    </Red_ColorResponse>
+    <OpenGreenImageFile Enable="1" Class="UIOpenImageFile" DisplayTestName="OpenRedImageFile" InutImage="NA" OutputImage="Green_Image">
+      <Parameters ShowMessage="Open Green Image"></Parameters>
+    </OpenGreenImageFile>
+    <Green_ColorResponse Enable="1" Class="MeanAndStdev" DisplayTestName="Green_ColorResponse" InutImage="Green_Image" OutputImage="NA">
+      <Parameters SpecRedSTD="255" SpecRedMeanMax="255" SpecRedMeanMin="0" SpecGreenSTD="255" SpecGreenMeanMax="255" SpecGreenMeanMin="0" SpecBlueSTD="255" SpecBlueMeanMax="255" SpecBlueMeanMin="0" SpecGraySTD="255" SpecGrayMeanMax="255" SpecGrayMeanMin="0" OutRedMean="RedMeanNoUse" OutGreenMean="GreenMeanOut" OutBlueMean="BlueMeanNoUse"></Parameters>
+    </Green_ColorResponse>
+    <ColorResponseRGB_Ratio Enable="1" Class="ColorRespondRGBChart" DisplayTestName="ColorResponseRGB_Ratio" InutImage="Green_Image" OutputImage="NA">
+      <Parameters InRedMean="RedMeanOut" InGreenMean="GreenMeanOut" InBlueMean="BlueMeanOut" Spec_RG_Min="0.9" Spec_RG_Max="1.4" Spec_BG_Min="0.8" Spec_BG_Max="1.4"></Parameters>
+    </ColorResponseRGB_Ratio>
+    <OpenGreenImageFile Enable="1" Class="UIOpenImageFile" DisplayTestName="OpenRedImageFile" InutImage="NA" OutputImage="StrayLight">
+      <Parameters ShowMessage="Open StrayLight Image"></Parameters>
+    </OpenGreenImageFile>
+    <Dark_StrayLight Enable="1" Class="StrayLight" DisplayTestName="Dark_StrayLight" InutImage="StrayLight" OutputImage="NA">
+      <Parameters StrayLightSpec="30"></Parameters>
+    </Dark_StrayLight>
+  </TestSequences>
+  <AfterTest>
+    <CloseFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Close Filter Wheels">
+      <Parameters Run_Command="Close" Position="0"></Parameters>
+    </CloseFilterWheels>
+  </AfterTest>
+</TestFlow>
