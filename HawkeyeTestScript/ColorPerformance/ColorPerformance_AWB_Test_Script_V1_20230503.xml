@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestFlow>
+  <SystemInformation Version="0.0.0.1" Model="Hawkeye" Date="2020.07.22" LogFolder="C:\LogData\" SaveNDFormat="1">
+    <ND_Format>
+      <Sensitivity Item="5.8.1" InspectionItem="Sensitivity" DisplayTestName="White_Sensitivity" />
+      <WhiteBalance Item="5.8.2" InspectionItem="White Balance" DisplayTestName="White_WhiteBalance" />
+      <SFRTest Item="5.8.3" InspectionItem="SFR Test" DisplayTestName="SFR_SingleSlantedROI" />
+      <UniformityTest Item="5.8.4" InspectionItem="Uniformity Test" DisplayTestName="White_Uniformity2" />
+      <ColorResponseTest Item="5.8.5" InspectionItem="Color Response Test" DisplayTestName="ColorResponseRGB_Ratio" />
+      <DustSpotTest Item="5.8.6" InspectionItem="Dust/Spot Test" DisplayTestName="White_DustSpot" />
+      <DarkTest Item="5.8.7" InspectionItem="Dark Test" DisplayTestName="Dark DarkResponse" />
+      <NoiseTest Item="5.8.8" InspectionItem="Noise Test" DisplayTestName="Dark_TotalNoise" />
+      <StrayLightTest Item="5.8.9" InspectionItem="Stray Light Test" DisplayTestName="Dark_StrayLight" />
+    </ND_Format>
+    <CheckSN Enable="0" RegexFormat="^[a-zA-Z0-9_+\-()]{12}$" ErrorMessage="請輸入12碼合法序號(a~z 0~9 +-_())" />
+  </SystemInformation>
+  <BeforeTest>
+    <OpenFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Open Filter Wheels">
+      <Parameters Run_Command="Open" Position="0"></Parameters>
+    </OpenFilterWheels>
+  </BeforeTest>
+  <TestSequences>
+    <ISP_OpenLed Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_IniAndSetLed" InutImage="NA" OutputImage="NA">
+      <Parameters Set_LedLevel="0" Ini_LedLevel="0"></Parameters>
+    </ISP_OpenLed>
+    <ISP_WriteAWB_EEPROM Enable="1" Class="ISP_WriteAWB_EEPROM" DisplayTestName="ISP_WriteAWB_EEPROM" InutImage="NA" OutputImage="NA">
+      <Parameters AWB_AccessTime="3000" AWB_Set_R="11" AWB_Set_G="22" AWB_Set_B="33" AWB_SetFixVaule="0"></Parameters>
+    </ISP_WriteAWB_EEPROM>
+    <GetCameraOneFrame4White Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4White" InutImage="NA" OutputImage="WhiteImage">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4White>
+  </TestSequences>
+  <AfterTest>
+    <CloseFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Close Filter Wheels">
+      <Parameters Run_Command="Close" Position="0"></Parameters>
+    </CloseFilterWheels>
+  </AfterTest>
+</TestFlow>

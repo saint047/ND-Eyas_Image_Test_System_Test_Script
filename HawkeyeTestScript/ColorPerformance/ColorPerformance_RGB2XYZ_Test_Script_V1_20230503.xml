@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestFlow>
+  <SystemInformation Version="0.0.0.1" Model="Hawkeye" Date="2020.07.22" LogFolder="C:\LogData\" SaveNDFormat="1">
+    <ND_Format>
+      <Sensitivity Item="1." InspectionItem="patch_XYZ" DisplayTestName="RGB2XYZ" />
+    </ND_Format>
+    <CheckSN Enable="0" RegexFormat="^[a-zA-Z0-9_+\-()]{12}$" ErrorMessage="請輸入12碼合法序號(a~z 0~9 +-_())" />
+  </SystemInformation>
+  <BeforeTest>
+    <OpenFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Open Filter Wheels">
+      <Parameters Run_Command="Open" Position="0"></Parameters>
+    </OpenFilterWheels>
+  </BeforeTest>
+  <TestSequences>
+    <OpenPatchFile_1 Enable="0" Class="UIOpenImageFile" DisplayTestName="OpenPatchFile_1" InutImage="NA" OutputImage="OpenPatch1">
+      <Parameters ShowMessage="OpenPatch1"></Parameters>
+    </OpenPatchFile_1>
+    <GetROI Enable="0" Class="GetROI" DisplayTestName="GetROI" InutImage="OpenPatch1" OutputImage="OpenPatchROI1">
+      <Parameters StartX="50" StartY="50" ROI_Width="300" ROI_Height="300"></Parameters>
+    </GetROI>
+    <Blue_ColorResponse Enable="1" Class="RGB2XYZ_Mean" DisplayTestName="RGB2XYZ" InutImage="OpenPatchROI1" OutputImage="NA">
+      <Parameters SpecX_MeanMax="255" SpecX_MeanMin="0" SpecY_MeanMax="255" SpecY_MeanMin="0" SpecZ_MeanMax="255" SpecZ_MeanMin="0"></Parameters>
+    </Blue_ColorResponse>
+  </TestSequences>
+  <AfterTest>
+    <CloseFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Close Filter Wheels">
+      <Parameters Run_Command="Close" Position="0"></Parameters>
+    </CloseFilterWheels>
+  </AfterTest>
+</TestFlow>
