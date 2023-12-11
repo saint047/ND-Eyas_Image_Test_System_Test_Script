@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestFlow>
+  <SystemInformation Version="0.0.0.1" Model="Hawkeye" Date="2020.07.22" LogFolder="C:\LogData\" SaveNDFormat="1">
+    <ND_Format>
+      <White_SignalToNoiseRatio Item="1" InspectionItem="SignalToNoiseRatio" DisplayTestName="White_SNR" />
+      <White_WhiteBalance Item="2" InspectionItem="WhiteBalance" DisplayTestName="White_WhiteBalance" />
+      <White_Uniformity Item="3" InspectionItem="Uniformity" DisplayTestName="White_Uniformity" />
+      <SFRTest Item="4" InspectionItem="SFR Test" DisplayTestName="SFR_SingleSlantedROI" />
+      <DynamicRange Item="5" InspectionItem="DynamicRange" DisplayTestName="DynamicRange" />
+      <ColorResponseTest_R Item="6" InspectionItem="DeltaE00_R" DisplayTestName="Color_DeltaE_R" />
+      <ColorResponseTest_R Item="7" InspectionItem="DeltaE00_G" DisplayTestName="Color_DeltaE_G" />
+      <ColorResponseTest_R Item="8" InspectionItem="DeltaE00_B" DisplayTestName="Color_DeltaE_B" />
+    </ND_Format>
+    <CheckSN Enable="0" RegexFormat="^[a-zA-Z0-9_+\-()]{12}$" ErrorMessage="請輸入12碼合法序號(a~z 0~9 +-_())" />
+  </SystemInformation>
+  <BeforeTest></BeforeTest>
+  <TestSequences>
+    <OpenImageFile_White Enable="1" Class="UIOpenImageFile" DisplayTestName="OpenImageFile_White" InutImage="NA" OutputImage="WhiteImage">
+      <Parameters ShowMessage="Open White Image"></Parameters>
+    </OpenImageFile_White>
+    <GetROI4SNR Enable="1" Class="GetROI" DisplayTestName="GetROI4SNR" InutImage="WhiteImage" OutputImage="WhiteImage_SNR">
+      <Parameters StartX="50" StartY="80" ROI_Width="50" ROI_Height="50" RotateDeg="0"></Parameters>
+    </GetROI4SNR>
+    <GetCameraOneFrame4SNR Enable="0" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4SNR" InutImage="NA" OutputImage="WhiteImage">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4SNR>
+    <White_SignalToNoiseRatio Enable="1" Class="ImageSignalToNoiseRatio" DisplayTestName="White_SNR" InutImage="WhiteImage_SNR" OutputImage="NA">
+      <Parameters SpecSNR_Max="999" SpecSNR_Min="35"></Parameters>
+    </White_SignalToNoiseRatio>
+    <White_WhiteBalance Enable="1" Class="WhiteBalance" DisplayTestName="White_WhiteBalance" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters SpecDiff="15"></Parameters>
+    </White_WhiteBalance>
+    <White_Uniformity2 Enable="1" Class="Uniformity2" DisplayTestName="White_Uniformity" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters SpecUniformity2_Max="100" EdgeArea="100" SpecUniformity2_Min="65"></Parameters>
+    </White_Uniformity2>
+    <OpenImageFile_SFR Enable="1" Class="UIOpenImageFile" DisplayTestName="OpenImageFile_SFR" InutImage="NA" OutputImage="SFR_OriImage">
+      <Parameters ShowMessage="Open SFR Image"></Parameters>
+    </OpenImageFile_SFR>
+    <GetCameraOneFrame4SFR Enable="0" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4SFR" InutImage="NA" OutputImage="SFR_OriImage">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4SFR>
+    <GetROI4SFR Enable="1" Class="GetROI" DisplayTestName="GetROI4SFR" InutImage="SFR_OriImage" OutputImage="SFR_Image">
+      <Parameters StartX="124" StartY="142" ROI_Width="89" ROI_Height="137" RotateDeg="0"></Parameters>
+    </GetROI4SFR>
+    <SFR_SingleSlantedROI Enable="1" Class="SFR_SingleSlantedROI" DisplayTestName="SFR_SingleSlantedROI" InutImage="SFR_Image" OutputImage="NA">
+      <Parameters Spec2Ny_2F_Min="0.5" Spec4Ny_2F_Min="0.6" Cut_Width="80" Spec2Ny_2F_Max="1.0" Spec4Ny_2F_Max="1.0"></Parameters>
+    </SFR_SingleSlantedROI>
+    <GetROI4DynamicRange Enable="1" Class="GetROI" DisplayTestName="GetROI4DynamicRange" InutImage="SFR_OriImage" OutputImage="DynamicRange_Image">
+      <Parameters StartX="250" StartY="150" ROI_Width="100" ROI_Height="100" RotateDeg="0"></Parameters>
+    </GetROI4DynamicRange>
+    <Dark_DynamicRange Enable="1" Class="Dark_DynamicRange" DisplayTestName="DynamicRange" InutImage="DynamicRange_Image" OutputImage="NA">
+      <Parameters SpecDYR_Max="999" SpecDYR_Min="45"></Parameters>
+    </Dark_DynamicRange>
+    <GetCameraOneFrame4B Enable="0" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4B" InutImage="NA" OutputImage="DeltaE_B">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4B>
+    <OpenImageFile_Blue Enable="1" Class="UIOpenImageFile" DisplayTestName="OpenImageFile_Blue" InutImage="NA" OutputImage="DeltaE_B">
+      <Parameters ShowMessage="Open DeltaE_B Image"></Parameters>
+    </OpenImageFile_Blue>
+    <GetROI4DelteE_B Enable="1" Class="GetROI" DisplayTestName="GetROI4DelteE_B" InutImage="DeltaE_B" OutputImage="DeltaE_B_ROI">
+      <Parameters StartX="125" StartY="300" ROI_Width="50" ROI_Height="50"></Parameters>
+    </GetROI4DelteE_B>
+    <Color_DeltaE_B Enable="1" Class="CIE2000" DisplayTestName="Color_DeltaE_B" InutImage="DeltaE_B_ROI" OutputImage="NA">
+      <Parameters Ref_L="28.778" Ref_a="23.179" Ref_b="-50.297" Delt_E_SpecMax="15"></Parameters>
+    </Color_DeltaE_B>
+    <OpenImageFile_Red Enable="1" Class="UIOpenImageFile" DisplayTestName="OpenImageFile_Red" InutImage="NA" OutputImage="DeltaE_R">
+      <Parameters ShowMessage="Open DeltaE_R Image"></Parameters>
+    </OpenImageFile_Red>
+    <GetCameraOneFrame4R Enable="0" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4R" InutImage="NA" OutputImage="DeltaE_R">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4R>
+    <GetROI4DelteE_R Enable="1" Class="GetROI" DisplayTestName="GetROI4DelteE_R" InutImage="DeltaE_R" OutputImage="DeltaE_R_ROI">
+      <Parameters StartX="125" StartY="300" ROI_Width="50" ROI_Height="50"></Parameters>
+    </GetROI4DelteE_R>
+    <Color_DeltaE_R Enable="1" Class="CIE2000" DisplayTestName="Color_DeltaE_R" InutImage="DeltaE_R_ROI" OutputImage="NA">
+      <Parameters Ref_L="42.101" Ref_a="53.378" Ref_b="28.19" Delt_E_SpecMax="15"></Parameters>
+    </Color_DeltaE_R>
+    <GetCameraOneFrame4G Enable="0" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4G" InutImage="NA" OutputImage="DeltaE_G">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4G>
+    <OpenImageFile_Green Enable="1" Class="UIOpenImageFile" DisplayTestName="OpenImageFile_Green" InutImage="NA" OutputImage="DeltaE_G">
+      <Parameters ShowMessage="Open DeltaE_G Image"></Parameters>
+    </OpenImageFile_Green>
+    <GetROI4DelteE_G Enable="1" Class="GetROI" DisplayTestName="GetROI4DelteE_G" InutImage="DeltaE_G" OutputImage="DeltaE_G_ROI">
+      <Parameters StartX="125" StartY="300" ROI_Width="50" ROI_Height="50"></Parameters>
+    </GetROI4DelteE_G>
+    <Color_DeltaE_G Enable="1" Class="CIE2000" DisplayTestName="Color_DeltaE_G" InutImage="DeltaE_G_ROI" OutputImage="NA">
+      <Parameters Ref_L="52.261" Ref_a="-43.342" Ref_b="35.37" Delt_E_SpecMax="15"></Parameters>
+    </Color_DeltaE_G>
+  </TestSequences>
+  <AfterTest>
+    <CloseFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Close Filter Wheels">
+      <Parameters Run_Command="Close" Position="0"></Parameters>
+    </CloseFilterWheels>
+  </AfterTest>
+</TestFlow>
