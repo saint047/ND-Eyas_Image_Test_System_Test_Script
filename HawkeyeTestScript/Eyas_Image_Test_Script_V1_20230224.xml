@@ -14,7 +14,7 @@
       <NoiseTest Item="5.8.8" InspectionItem="Noise Test" DisplayTestName="Dark_TotalNoise" />
       <StrayLightTest Item="5.8.9" InspectionItem="Stray Light Test" DisplayTestName="Dark_StrayLight" />
     </ND_Format>
-    <CheckSN Enable="1" RegexFormat="^[a-zA-Z0-9_+\-()]{12}$" ErrorMessage="請輸入12碼合法序號(a~z 0~9 +-_())" />
+    <CheckSN Enable="0" RegexFormat="^[a-zA-Z0-9_+\-()]{12}$" ErrorMessage="請輸入12碼合法序號(a~z 0~9 +-_())" />
   </SystemInformation>
   <BeforeTest>
     <OpenFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Open Filter Wheels">
@@ -35,7 +35,7 @@
       <Parameters Run_Command="SetFilterPos" Position="1"></Parameters>
     </FilterWheelsPosition2>
     <ISP_OpenLed Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_IniAndSetLed" InutImage="NA" OutputImage="NA">
-      <Parameters Set_LedLevel="1" Ini_LedLevel="1"></Parameters>
+      <Parameters Set_LedLevel="1" Ini_LedLevel="1" Set_LedStepValue="43"></Parameters>
     </ISP_OpenLed>
     <Pause_AWB Enable="1" Class="Pause" DisplayTestName="Pause_AWB" InutImage="DarkImage" OutputImage="NA">
       <Parameters Millisecond="500"></Parameters>
