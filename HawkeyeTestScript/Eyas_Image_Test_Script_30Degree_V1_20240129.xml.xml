@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestFlow>
+  <SystemInformation Version="0.0.0.1" Model="Hawkeye" Date="2020.07.22" LogFolder="C:\LogData\" SaveNDFormat="1">
+    <ND_Format>
+      <FunctionalTest Item="5.3" InspectionItem="Functional Test" DisplayTestName="ISP_ButtonTest" />
+      <EEpromFunction Item="5.6" InspectionItem="EEprom Function" DisplayTestName="ISP_WriteEEPROM" />
+      <Sensitivity Item="5.8.1" InspectionItem="Sensitivity" DisplayTestName="White_Sensitivity" />
+      <WhiteBalance Item="5.8.2" InspectionItem="White Balance" DisplayTestName="White_WhiteBalance" />
+      <SFRTest Item="5.8.3" InspectionItem="SFR Test" DisplayTestName="SFR_SingleSlantedROI" />
+      <UniformityTest Item="5.8.4" InspectionItem="Uniformity Test" DisplayTestName="White_Uniformity2" />
+      <ColorResponseTest Item="5.8.5" InspectionItem="Color Response Test" DisplayTestName="ColorResponseRGB_Ratio" />
+      <DustSpotTest Item="5.8.6" InspectionItem="Dust/Spot Test" DisplayTestName="White_DustSpot" />
+      <DarkTest Item="5.8.7" InspectionItem="Dark Test" DisplayTestName="Dark DarkResponse" />
+      <NoiseTest Item="5.8.8" InspectionItem="Noise Test" DisplayTestName="Dark_TotalNoise" />
+      <StrayLightTest Item="5.8.9" InspectionItem="Stray Light Test" DisplayTestName="Dark_StrayLight" />
+    </ND_Format>
+    <CheckSN Enable="1" RegexFormat="^[a-zA-Z0-9_+\-()]{12}$" ErrorMessage="請輸入12碼合法序號(a~z 0~9 +-_())" />
+  </SystemInformation>
+  <BeforeTest>
+    <OpenFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Open Filter Wheels">
+      <Parameters Run_Command="Open" Position="0"></Parameters>
+    </OpenFilterWheels>
+  </BeforeTest>
+  <TestSequences>
+    <ISP_ButtonTest Enable="1" Class="ISP_ButtonTest" DisplayTestName="ISP_ButtonTest" InutImage="NA" OutputImage="NA">
+      <Parameters CountDownMilliseconds="5000"></Parameters>
+    </ISP_ButtonTest>
+    <Write_EEPROM Enable="1" Class="ISP_WriteEEPROM" DisplayTestName="ISP_WriteEEPROM" InutImage="NA" OutputImage="NA">
+      <Parameters LedStepValue="12"></Parameters>
+    </Write_EEPROM>
+    <OpenFilterWheels Enable="1" Class="FilterWheelsControl" DisplayTestName="Open Filter Wheels " InutImage="NA" OutputImage="NA">
+      <Parameters Run_Command="Open" Position="0"></Parameters>
+    </OpenFilterWheels>
+    <FilterWheelsPosition2 Enable="1" Class="FilterWheelsControl" DisplayTestName="Filter Wheels Control 2" InutImage="NA" OutputImage="NA">
+      <Parameters Run_Command="SetFilterPos" Position="1"></Parameters>
+    </FilterWheelsPosition2>
+    <ISP_OpenLed Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_IniAndSetLed" InutImage="NA" OutputImage="NA">
+      <Parameters Set_LedLevel="1" Ini_LedLevel="1" Set_LedStepValue="12"></Parameters>
+    </ISP_OpenLed>
+    <Pause_AWB Enable="1" Class="Pause" DisplayTestName="Pause_AWB" InutImage="DarkImage" OutputImage="NA">
+      <Parameters Millisecond="500"></Parameters>
+    </Pause_AWB>
+    <GetCameraOneFrameBeforeAWB Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrameBeforeAWB" InutImage="NA" OutputImage="BeforeAWB">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrameBeforeAWB>
+    <ISP_WriteAWB_EEPROM Enable="1" Class="ISP_WriteAWB_EEPROM" DisplayTestName="ISP_WriteAWB_EEPROM" InutImage="NA" OutputImage="NA">
+      <Parameters AWB_AccessTime="3000" AWB_Set_R="11" AWB_Set_G="22" AWB_Set_B="33" AWB_SetFixVaule="0"></Parameters>
+    </ISP_WriteAWB_EEPROM>
+    <GetCameraOneFrame4White Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4White" InutImage="NA" OutputImage="WhiteImage">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4White>
+    <White_Sensitivity Enable="1" Class="GrayImage_Mean" DisplayTestName="White_Sensitivity" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters SpecGrayMeanMax="255" SpecGrayMeanMin="150"></Parameters>
+    </White_Sensitivity>
+    <White_WhiteBalance Enable="1" Class="WhiteBalance" DisplayTestName="White_WhiteBalance" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters SpecDiff="15"></Parameters>
+    </White_WhiteBalance>
+    <White_Uniformity2 Enable="1" Class="Uniformity2" DisplayTestName="White_Uniformity2" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters SpecUniformity2_Max="100" EdgeArea="100" SpecUniformity2_Min="50"></Parameters>
+    </White_Uniformity2>
+    <White_DustSpot Enable="1" Class="DustSpot" DisplayTestName="White_DustSpot" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters DustSpotCenterSpec="10" DustSpotOutSideSpec="80" KernelSize="9" CenterSize="4" EdgeArea="80"></Parameters>
+    </White_DustSpot>
+    <ISP_CloseLed Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_CloseLed2" InutImage="NA" OutputImage="NA">
+      <Parameters Set_LedLevel="-1" Ini_LedLevel="-1"></Parameters>
+    </ISP_CloseLed>
+    <GetCameraOneFrame4Dark Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4Dark" InutImage="NA" OutputImage="DarkImage">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4Dark>
+    <Dark_TotalNoise Enable="1" Class="GrayImage_StandardDeviation" DisplayTestName="Dark_TotalNoise" InutImage="DarkImage" OutputImage="NA">
+      <Parameters SpecGrayStdMax="6" SpecGrayStdMin="0"></Parameters>
+    </Dark_TotalNoise>
+    <Dark_DarkResponse Enable="1" Class="DarkResponse" DisplayTestName="Dark DarkResponse" InutImage="DarkImage" OutputImage="NA">
+      <Parameters DarkResponseSpec="20"></Parameters>
+    </Dark_DarkResponse>
+    <ISP_OpenLed2 Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_OpenLed2" InutImage="NA" OutputImage="NA">
+      <Parameters Set_LedLevel="0" Ini_LedLevel="1"></Parameters>
+    </ISP_OpenLed2>
+    <FilterWheelsPosition3 Enable="1" Class="FilterWheelsControl" DisplayTestName="Filter Wheels Control 3" InutImage="NA" OutputImage="NA">
+      <Parameters Run_Command="SetFilterPos" Position="2"></Parameters>
+    </FilterWheelsPosition3>
+    <Pause Enable="1" Class="Pause" DisplayTestName="Pause" InutImage="DarkImage" OutputImage="NA">
+      <Parameters Millisecond="500"></Parameters>
+    </Pause>
+    <GetCameraOneFrame4SFR Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4SFR" InutImage="NA" OutputImage="SFR_OriImage">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4SFR>
+    <GetROI Enable="1" Class="GetROI" DisplayTestName="GetROI" InutImage="SFR_OriImage" OutputImage="SFR_Image">
+      <Parameters StartX="120" StartY="120" ROI_Width="130" ROI_Height="80"></Parameters>
+    </GetROI>
+    <SFR_SingleSlantedROI Enable="1" Class="SFR_SingleSlantedROI" DisplayTestName="SFR_SingleSlantedROI" InutImage="SFR_Image" OutputImage="NA">
+      <Parameters Spec2Ny_2F_Min="0.35" Spec4Ny_2F_Min="0.6" Cut_Width="80" Spec2Ny_2F_Max="1.0" Spec4Ny_2F_Max="1.0"></Parameters>
+    </SFR_SingleSlantedROI>
+    <FilterWheelsPosition4 Enable="1" Class="FilterWheelsControl" DisplayTestName="Filter Wheels Control 4" InutImage="NA" OutputImage="NA">
+      <Parameters Run_Command="SetFilterPos" Position="3"></Parameters>
+    </FilterWheelsPosition4>
+    <ISP_OpenLed2 Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_OpenLed2" InutImage="NA" OutputImage="NA">
+      <Parameters Set_LedLevel="1" Ini_LedLevel="1"></Parameters>
+    </ISP_OpenLed2>
+    <GetCameraOneFrame4Blue Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4Blue" InutImage="NA" OutputImage="Blue_Image">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4Blue>
+    <Blue_ColorResponse Enable="1" Class="MeanAndStdev" DisplayTestName="Blue_ColorResponse" InutImage="Blue_Image" OutputImage="NA">
+      <Parameters SpecRedSTD="255" SpecRedMeanMax="255" SpecRedMeanMin="0" SpecGreenSTD="255" SpecGreenMeanMax="255" SpecGreenMeanMin="0" SpecBlueSTD="255" SpecBlueMeanMax="255" SpecBlueMeanMin="0" SpecGraySTD="255" SpecGrayMeanMax="255" SpecGrayMeanMin="0" OutRedMean="RedMeanNoUse" OutGreenMean="GreenMeanNoUse" OutBlueMean="BlueMeanOut"></Parameters>
+    </Blue_ColorResponse>
+    <FilterWheelsPosition5 Enable="1" Class="FilterWheelsControl" DisplayTestName="Filter Wheels Control 5" InutImage="NA" OutputImage="NA">
+      <Parameters Run_Command="SetFilterPos" Position="4"></Parameters>
+    </FilterWheelsPosition5>
+    <GetCameraOneFrame4Red Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4Red" InutImage="NA" OutputImage="Red_Image">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4Red>
+    <Red_ColorResponse Enable="1" Class="MeanAndStdev" DisplayTestName="Red_ColorResponse" InutImage="Red_Image" OutputImage="NA">
+      <Parameters SpecRedSTD="255" SpecRedMeanMax="255" SpecRedMeanMin="0" SpecGreenSTD="255" SpecGreenMeanMax="255" SpecGreenMeanMin="0" SpecBlueSTD="255" SpecBlueMeanMax="255" SpecBlueMeanMin="0" SpecGraySTD="255" SpecGrayMeanMax="255" SpecGrayMeanMin="0" OutRedMean="RedMeanOut" OutGreenMean="GreenMeanNoUse" OutBlueMean="BlueMeanNoUse"></Parameters>
+    </Red_ColorResponse>
+    <FilterWheelsPosition1 Enable="1" Class="FilterWheelsControl" DisplayTestName="Filter Wheels Control 1" InutImage="NA" OutputImage="NA">
+      <Parameters Run_Command="SetFilterPos" Position="0"></Parameters>
+    </FilterWheelsPosition1>
+    <GetCameraOneFrame4Green Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4Green" InutImage="NA" OutputImage="Green_Image">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4Green>
+    <Green_ColorResponse Enable="1" Class="MeanAndStdev" DisplayTestName="Green_ColorResponse" InutImage="Green_Image" OutputImage="NA">
+      <Parameters SpecRedSTD="255" SpecRedMeanMax="255" SpecRedMeanMin="0" SpecGreenSTD="255" SpecGreenMeanMax="255" SpecGreenMeanMin="0" SpecBlueSTD="255" SpecBlueMeanMax="255" SpecBlueMeanMin="0" SpecGraySTD="255" SpecGrayMeanMax="255" SpecGrayMeanMin="0" OutRedMean="RedMeanNoUse" OutGreenMean="GreenMeanOut" OutBlueMean="BlueMeanNoUse"></Parameters>
+    </Green_ColorResponse>
+    <ColorResponseRGB_Ratio Enable="1" Class="ColorRespondRGBChart" DisplayTestName="ColorResponseRGB_Ratio" InutImage="Green_Image" OutputImage="NA">
+      <Parameters InRedMean="RedMeanOut" InGreenMean="GreenMeanOut" InBlueMean="BlueMeanOut" Spec_RG_Min="0.9" Spec_RG_Max="1.4" Spec_BG_Min="0.8" Spec_BG_Max="1.4"></Parameters>
+    </ColorResponseRGB_Ratio>
+    <Test_Wait_Windows Enable="1" Class="Test_Wait_Windows" DisplayTestName="StrayLightTestWindows" InutImage="NA" OutputImage="NA">
+      <Parameters Millisecond="1000"></Parameters>
+    </Test_Wait_Windows>
+    <ISP_OpenLedStrayLight Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_OpenLedStrayLight" InutImage="NA" OutputImage="NA">
+      <Parameters Set_LedLevel="4" Ini_LedLevel="4"></Parameters>
+    </ISP_OpenLedStrayLight>
+    <Pause Enable="1" Class="Pause" DisplayTestName="Pause" InutImage="DarkImage" OutputImage="NA">
+      <Parameters Millisecond="1000"></Parameters>
+    </Pause>
+    <GetCameraOneFrameStrayLight Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrameStrayLight" InutImage="NA" OutputImage="StrayLight">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrameStrayLight>
+    <Dark_StrayLight Enable="1" Class="StrayLight" DisplayTestName="Dark_StrayLight" InutImage="StrayLight" OutputImage="NA">
+      <Parameters StrayLightSpec="30"></Parameters>
+    </Dark_StrayLight>
+    <CloseFilterWheels Enable="1" Class="FilterWheelsControl" DisplayTestName="Close Filter Wheels">
+      <Parameters Run_Command="Close" Position="0"></Parameters>
+    </CloseFilterWheels>
+    <ISP_CloseLed Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_CloseLed" InutImage="NA" OutputImage="NA">
+      <Parameters Set_LedLevel="-1" Ini_LedLevel="-1"></Parameters>
+    </ISP_CloseLed>
+  </TestSequences>
+  <AfterTest>
+    <CloseFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Close Filter Wheels">
+      <Parameters Run_Command="Close" Position="0"></Parameters>
+    </CloseFilterWheels>
+  </AfterTest>
+</TestFlow>
