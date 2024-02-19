@@ -26,7 +26,7 @@
       <Parameters CountDownMilliseconds="5000"></Parameters>
     </ISP_ButtonTest>
     <Write_EEPROM Enable="1" Class="ISP_WriteEEPROM" DisplayTestName="ISP_WriteEEPROM" InutImage="NA" OutputImage="NA">
-      <Parameters LedStepValue="12"></Parameters>
+      <Parameters LedStepValue="25"></Parameters>
     </Write_EEPROM>
     <OpenFilterWheels Enable="1" Class="FilterWheelsControl" DisplayTestName="Open Filter Wheels " InutImage="NA" OutputImage="NA">
       <Parameters Run_Command="Open" Position="0"></Parameters>
@@ -34,9 +34,9 @@
     <FilterWheelsPosition2 Enable="1" Class="FilterWheelsControl" DisplayTestName="Filter Wheels Control 2" InutImage="NA" OutputImage="NA">
       <Parameters Run_Command="SetFilterPos" Position="1"></Parameters>
     </FilterWheelsPosition2>
-    <ISP_OpenLed Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_IniAndSetLed" InutImage="NA" OutputImage="NA">
-      <Parameters Set_LedLevel="1" Ini_LedLevel="1" Set_LedStepValue="12"></Parameters>
-    </ISP_OpenLed>
+    <ISP_IniAndSetLed Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_IniAndSetLed" InutImage="NA" OutputImage="NA">
+      <Parameters Set_LedLevel="1" Ini_LedLevel="1" Set_LedStepValue="43"></Parameters>
+    </ISP_IniAndSetLed>
     <Pause_AWB Enable="1" Class="Pause" DisplayTestName="Pause_AWB" InutImage="DarkImage" OutputImage="NA">
       <Parameters Millisecond="500"></Parameters>
     </Pause_AWB>
@@ -61,9 +61,9 @@
     <White_DustSpot Enable="1" Class="DustSpot" DisplayTestName="White_DustSpot" InutImage="WhiteImage" OutputImage="NA">
       <Parameters DustSpotCenterSpec="10" DustSpotOutSideSpec="80" KernelSize="9" CenterSize="4" EdgeArea="80"></Parameters>
     </White_DustSpot>
-    <ISP_CloseLed Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_CloseLed2" InutImage="NA" OutputImage="NA">
-      <Parameters Set_LedLevel="-1" Ini_LedLevel="-1"></Parameters>
-    </ISP_CloseLed>
+    <ISP_CloseLed2Dark Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_CloseLed2Dark" InutImage="NA" OutputImage="NA">
+      <Parameters Set_LedLevel="-1" Ini_LedLevel="-1" Set_LedStepValue="43"></Parameters>
+    </ISP_CloseLed2Dark>
     <GetCameraOneFrame4Dark Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4Dark" InutImage="NA" OutputImage="DarkImage">
       <Parameters CameraIndex="0"></Parameters>
     </GetCameraOneFrame4Dark>
@@ -73,9 +73,9 @@
     <Dark_DarkResponse Enable="1" Class="DarkResponse" DisplayTestName="Dark DarkResponse" InutImage="DarkImage" OutputImage="NA">
       <Parameters DarkResponseSpec="20"></Parameters>
     </Dark_DarkResponse>
-    <ISP_OpenLed2 Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_OpenLed2" InutImage="NA" OutputImage="NA">
-      <Parameters Set_LedLevel="0" Ini_LedLevel="1"></Parameters>
-    </ISP_OpenLed2>
+    <ISP_OpenLed2SFR Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_OpenLed2SFR" InutImage="NA" OutputImage="NA">
+      <Parameters Set_LedLevel="0" Ini_LedLevel="1" Set_LedStepValue="43"></Parameters>
+    </ISP_OpenLed2SFR>
     <FilterWheelsPosition3 Enable="1" Class="FilterWheelsControl" DisplayTestName="Filter Wheels Control 3" InutImage="NA" OutputImage="NA">
       <Parameters Run_Command="SetFilterPos" Position="2"></Parameters>
     </FilterWheelsPosition3>
@@ -94,9 +94,9 @@
     <FilterWheelsPosition4 Enable="1" Class="FilterWheelsControl" DisplayTestName="Filter Wheels Control 4" InutImage="NA" OutputImage="NA">
       <Parameters Run_Command="SetFilterPos" Position="3"></Parameters>
     </FilterWheelsPosition4>
-    <ISP_OpenLed2 Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_OpenLed2" InutImage="NA" OutputImage="NA">
-      <Parameters Set_LedLevel="1" Ini_LedLevel="1"></Parameters>
-    </ISP_OpenLed2>
+    <ISP_OpenLed2Color Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_OpenLed2Color" InutImage="NA" OutputImage="NA">
+      <Parameters Set_LedLevel="1" Ini_LedLevel="1" Set_LedStepValue="43"></Parameters>
+    </ISP_OpenLed2Color>
     <GetCameraOneFrame4Blue Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4Blue" InutImage="NA" OutputImage="Blue_Image">
       <Parameters CameraIndex="0"></Parameters>
     </GetCameraOneFrame4Blue>
@@ -127,9 +127,9 @@
     <Test_Wait_Windows Enable="1" Class="Test_Wait_Windows" DisplayTestName="StrayLightTestWindows" InutImage="NA" OutputImage="NA">
       <Parameters Millisecond="1000"></Parameters>
     </Test_Wait_Windows>
-    <ISP_OpenLedStrayLight Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_OpenLedStrayLight" InutImage="NA" OutputImage="NA">
-      <Parameters Set_LedLevel="4" Ini_LedLevel="4"></Parameters>
-    </ISP_OpenLedStrayLight>
+    <ISP_OpenLed2StrayLight Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_OpenLed2StrayLight" InutImage="NA" OutputImage="NA">
+      <Parameters Set_LedLevel="4" Ini_LedLevel="4" Set_LedStepValue="43"></Parameters>
+    </ISP_OpenLed2StrayLight>
     <Pause Enable="1" Class="Pause" DisplayTestName="Pause" InutImage="DarkImage" OutputImage="NA">
       <Parameters Millisecond="1000"></Parameters>
     </Pause>
@@ -137,7 +137,7 @@
       <Parameters CameraIndex="0"></Parameters>
     </GetCameraOneFrameStrayLight>
     <Dark_StrayLight Enable="1" Class="StrayLight" DisplayTestName="Dark_StrayLight" InutImage="StrayLight" OutputImage="NA">
-      <Parameters StrayLightSpec="30"></Parameters>
+      <Parameters StrayLightSpec="3.5"></Parameters>
     </Dark_StrayLight>
     <CloseFilterWheels Enable="1" Class="FilterWheelsControl" DisplayTestName="Close Filter Wheels">
       <Parameters Run_Command="Close" Position="0"></Parameters>
