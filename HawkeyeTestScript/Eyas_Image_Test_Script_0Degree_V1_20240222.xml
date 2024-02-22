@@ -58,9 +58,6 @@
     <White_Uniformity2 Enable="1" Class="Uniformity2" DisplayTestName="White_Uniformity2" InutImage="WhiteImage" OutputImage="NA">
       <Parameters SpecUniformity2_Max="100" EdgeArea="100" SpecUniformity2_Min="50"></Parameters>
     </White_Uniformity2>
-    <White_DustSpot Enable="1" Class="DustSpot" DisplayTestName="White_DustSpot" InutImage="WhiteImage" OutputImage="NA">
-      <Parameters DustSpotCenterSpec="10" DustSpotOutSideSpec="80" KernelSize="9" CenterSize="4" EdgeArea="80"></Parameters>
-    </White_DustSpot>
     <ISP_CloseLed2Dark Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_CloseLed2Dark" InutImage="NA" OutputImage="NA">
       <Parameters Set_LedLevel="-1" Ini_LedLevel="-1" Set_LedStepValue="43"></Parameters>
     </ISP_CloseLed2Dark>
@@ -125,7 +122,7 @@
       <Parameters InRedMean="RedMeanOut" InGreenMean="GreenMeanOut" InBlueMean="BlueMeanOut" Spec_RG_Min="0.9" Spec_RG_Max="1.4" Spec_BG_Min="0.8" Spec_BG_Max="1.4"></Parameters>
     </ColorResponseRGB_Ratio>
     <Test_Wait_Windows Enable="1" Class="Test_Wait_Windows" DisplayTestName="StrayLightTestWindows" InutImage="NA" OutputImage="NA">
-      <Parameters Millisecond="1000"></Parameters>
+      <Parameters ShowText="Stray Light Test"></Parameters>
     </Test_Wait_Windows>
     <ISP_OpenLed2StrayLight Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_OpenLed2StrayLight" InutImage="NA" OutputImage="NA">
       <Parameters Set_LedLevel="4" Ini_LedLevel="4" Set_LedStepValue="43"></Parameters>
@@ -139,12 +136,21 @@
     <Dark_StrayLight Enable="1" Class="StrayLight" DisplayTestName="Dark_StrayLight" InutImage="StrayLight" OutputImage="NA">
       <Parameters StrayLightSpec="3.5"></Parameters>
     </Dark_StrayLight>
-    <CloseFilterWheels Enable="1" Class="FilterWheelsControl" DisplayTestName="Close Filter Wheels">
-      <Parameters Run_Command="Close" Position="0"></Parameters>
-    </CloseFilterWheels>
+    <Test_Wait_Windows2 Enable="1" Class="Test_Wait_Windows" DisplayTestName="Wait_Blemish_Test" InutImage="NA" OutputImage="NA">
+      <Parameters ShowText="White Blemish Test"></Parameters>
+    </Test_Wait_Windows2>
     <ISP_CloseLed Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_CloseLed" InutImage="NA" OutputImage="NA">
       <Parameters Set_LedLevel="-1" Ini_LedLevel="-1"></Parameters>
     </ISP_CloseLed>
+    <GetCameraOneFrame4WhiteBlemish Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4WhiteBlemish" InutImage="NA" OutputImage="WhiteBlemish">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4WhiteBlemish>
+    <White_DustSpot Enable="1" Class="DustSpot" DisplayTestName="White_DustSpot" InutImage="WhiteBlemish" OutputImage="NA">
+      <Parameters DustSpotCenterSpec="10" DustSpotOutSideSpec="80" KernelSize="9" CenterSize="4" EdgeArea="80"></Parameters>
+    </White_DustSpot>
+    <CloseFilterWheels Enable="1" Class="FilterWheelsControl" DisplayTestName="Close Filter Wheels">
+      <Parameters Run_Command="Close" Position="0"></Parameters>
+    </CloseFilterWheels>
   </TestSequences>
   <AfterTest>
     <CloseFilterWheels Enable="0" Class="FilterWheelsControl" DisplayTestName="Close Filter Wheels">
