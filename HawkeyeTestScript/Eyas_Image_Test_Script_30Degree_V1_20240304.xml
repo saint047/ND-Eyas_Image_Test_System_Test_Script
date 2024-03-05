@@ -26,7 +26,7 @@
       <Parameters CountDownMilliseconds="5000"></Parameters>
     </ISP_ButtonTest>
     <Write_EEPROM Enable="1" Class="ISP_WriteEEPROM" DisplayTestName="ISP_WriteEEPROM" InutImage="NA" OutputImage="NA">
-      <Parameters LedStepValue="25"></Parameters>
+      <Parameters LedStepValue="12"></Parameters>
     </Write_EEPROM>
     <OpenFilterWheels Enable="1" Class="FilterWheelsControl" DisplayTestName="Open Filter Wheels " InutImage="NA" OutputImage="NA">
       <Parameters Run_Command="Open" Position="0"></Parameters>
@@ -35,7 +35,7 @@
       <Parameters Run_Command="SetFilterPos" Position="1"></Parameters>
     </FilterWheelsPosition2>
     <ISP_IniAndSetLed Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_IniAndSetLed" InutImage="NA" OutputImage="NA">
-      <Parameters Set_LedLevel="1" Ini_LedLevel="1" Set_LedStepValue="43"></Parameters>
+      <Parameters Set_LedLevel="1" Ini_LedLevel="1" Set_LedStepValue="12"></Parameters>
     </ISP_IniAndSetLed>
     <Pause_AWB Enable="1" Class="Pause" DisplayTestName="Pause_AWB" InutImage="DarkImage" OutputImage="NA">
       <Parameters Millisecond="500"></Parameters>
@@ -46,18 +46,27 @@
     <ISP_WriteAWB_EEPROM Enable="1" Class="ISP_WriteAWB_EEPROM" DisplayTestName="ISP_WriteAWB_EEPROM" InutImage="NA" OutputImage="NA">
       <Parameters AWB_AccessTime="3000" AWB_Set_R="11" AWB_Set_G="22" AWB_Set_B="33" AWB_SetFixVaule="0"></Parameters>
     </ISP_WriteAWB_EEPROM>
+    <ISP_IniAndSetLed4AWB Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_IniAndSetLed4AWB" InutImage="NA" OutputImage="NA">
+      <Parameters Set_LedLevel="1" Ini_LedLevel="1" Set_LedStepValue="12"></Parameters>
+    </ISP_IniAndSetLed4AWB>
+    <GetCameraOneFrame4WhiteAWB Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4White" InutImage="NA" OutputImage="WhiteImageAWB">
+      <Parameters CameraIndex="0"></Parameters>
+    </GetCameraOneFrame4WhiteAWB>
+    <White_WhiteBalance Enable="1" Class="WhiteBalance" DisplayTestName="White_WhiteBalance" InutImage="WhiteImageAWB" OutputImage="NA">
+      <Parameters SpecDiff="15"></Parameters>
+    </White_WhiteBalance>
+    <ISP_IniAndSetLed4White Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_IniAndSetLed4White" InutImage="NA" OutputImage="NA">
+      <Parameters Set_LedLevel="1" Ini_LedLevel="1" Set_LedStepValue="43"></Parameters>
+    </ISP_IniAndSetLed4White>
     <GetCameraOneFrame4White Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4White" InutImage="NA" OutputImage="WhiteImage">
       <Parameters CameraIndex="0"></Parameters>
     </GetCameraOneFrame4White>
-    <White_Sensitivity Enable="1" Class="GrayImage_Mean" DisplayTestName="White_Sensitivity" InutImage="WhiteImage" OutputImage="NA">
-      <Parameters SpecGrayMeanMax="255" SpecGrayMeanMin="150"></Parameters>
-    </White_Sensitivity>
-    <White_WhiteBalance Enable="1" Class="WhiteBalance" DisplayTestName="White_WhiteBalance" InutImage="WhiteImage" OutputImage="NA">
-      <Parameters SpecDiff="15"></Parameters>
-    </White_WhiteBalance>
     <White_Uniformity2 Enable="1" Class="Uniformity2" DisplayTestName="White_Uniformity2" InutImage="WhiteImage" OutputImage="NA">
       <Parameters SpecUniformity2_Max="100" EdgeArea="100" SpecUniformity2_Min="50"></Parameters>
     </White_Uniformity2>
+    <White_Sensitivity Enable="1" Class="GrayImage_Mean" DisplayTestName="White_Sensitivity" InutImage="WhiteImage" OutputImage="NA">
+      <Parameters SpecGrayMeanMax="255" SpecGrayMeanMin="150"></Parameters>
+    </White_Sensitivity>
     <ISP_CloseLed2Dark Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_CloseLed2Dark" InutImage="NA" OutputImage="NA">
       <Parameters Set_LedLevel="-1" Ini_LedLevel="-1" Set_LedStepValue="43"></Parameters>
     </ISP_CloseLed2Dark>
@@ -136,18 +145,24 @@
     <Dark_StrayLight Enable="1" Class="StrayLight" DisplayTestName="Dark_StrayLight" InutImage="StrayLight" OutputImage="NA">
       <Parameters StrayLightSpec="3.5"></Parameters>
     </Dark_StrayLight>
+    <ISP_OpenLed2Blemish Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_OpenLed2Blemish" InutImage="NA" OutputImage="NA">
+      <Parameters Set_LedLevel="1" Ini_LedLevel="1" Set_LedStepValue="43"></Parameters>
+    </ISP_OpenLed2Blemish>
     <Test_Wait_Windows2 Enable="1" Class="Test_Wait_Windows" DisplayTestName="Wait_Blemish_Test" InutImage="NA" OutputImage="NA">
       <Parameters ShowText="White Blemish Test"></Parameters>
     </Test_Wait_Windows2>
-    <ISP_CloseLed Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_CloseLed" InutImage="NA" OutputImage="NA">
-      <Parameters Set_LedLevel="-1" Ini_LedLevel="-1"></Parameters>
-    </ISP_CloseLed>
     <GetCameraOneFrame4WhiteBlemish Enable="1" Class="CameraCaptureOneFrame" DisplayTestName="GetCameraOneFrame4WhiteBlemish" InutImage="NA" OutputImage="WhiteBlemish">
       <Parameters CameraIndex="0"></Parameters>
     </GetCameraOneFrame4WhiteBlemish>
     <White_DustSpot Enable="1" Class="DustSpot" DisplayTestName="White_DustSpot" InutImage="WhiteBlemish" OutputImage="NA">
       <Parameters DustSpotCenterSpec="10" DustSpotOutSideSpec="80" KernelSize="9" CenterSize="4" EdgeArea="80"></Parameters>
     </White_DustSpot>
+    <White_DustSpot2 Enable="0" Class="DustSpot" DisplayTestName="White_DustSpot2" InutImage="WhiteBlemish" OutputImage="NA">
+      <Parameters DustSpotCenterSpec="1.5" DustSpotOutSideSpec="1.5" KernelSize="70" CenterSize="40" EdgeArea="80"></Parameters>
+    </White_DustSpot2>
+    <ISP_CloseLed Enable="1" Class="ISP_IniAndSetLed" DisplayTestName="ISP_CloseLed" InutImage="NA" OutputImage="NA">
+      <Parameters Set_LedLevel="-1" Ini_LedLevel="-1"></Parameters>
+    </ISP_CloseLed>
     <CloseFilterWheels Enable="1" Class="FilterWheelsControl" DisplayTestName="Close Filter Wheels">
       <Parameters Run_Command="Close" Position="0"></Parameters>
     </CloseFilterWheels>
